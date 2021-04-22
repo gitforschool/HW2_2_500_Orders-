@@ -7,23 +7,23 @@ const mongoose = require("mongoose");
 // schema will enforce consistency in all our documents (records)
 const Schema = mongoose.Schema;
 
-const GradeBookSchema = new Schema({
-  assignment: {
-    type: String,
+const SalesOrderSchema = new Schema({
+  storeID: {
+    type: Number,
     required: true
   },
-  class: {
-    type: String,
+  salesPersonID: {
+    type: Number,
     required: true
   },
-  completed: {
-    type: Boolean,
+  cdID: {
+    type: Number,
     required: true
   },
-  grade: {
-    type: String,
+  pricePaid: {
+    type: Number,
     required: true
   }
 });
 
-module.exports = mongoose.model("GradeBook", GradeBookSchema);
+module.exports = mongoose.model("SalesOrder", SalesOrderSchema);

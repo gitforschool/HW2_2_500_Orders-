@@ -5,7 +5,7 @@ var router = express.Router();
 // .ADO.Net is a wrapper over raw SQL server interface
 const mongoose = require("mongoose");
 
-const GradedAssignments = require("../GradedAssignments");
+const SalesOrders = require('../SalesOrder');
 
 // edited to include my non-admin, user level account and PW on mongo atlas
 // and also to include the name of the mongo DB that the collection
@@ -38,14 +38,14 @@ router.get('/', function(req, res) {
 });
 
 /* GET all ToDos */
-router.get('/GradedAssignments', function(req, res) {
+router.get('/SalesOrder', function(req, res) {
   // find {  takes values, but leaving it blank gets all}
-  GradedAssignments.find({}, (err, AllAssignments) => {
+  SalesOrders.find({}, (err, AllSalesOrder) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
-    res.status(200).json(AllAssignments);
+    res.status(200).json(AllSalesOrder);
   });
 });
 
@@ -53,34 +53,25 @@ router.get('/GradedAssignments', function(req, res) {
 
 
 /* post a new ToDo and push to Mongo */
-router.post('/NewAssignment', function(req, res) {
+router.post('/NewSalesOrder', function(req, res) {
 
-    let oneNewGradedAssignment = new GradedAssignments(req.body);  // call constuctor in ToDos code that makes a new mongo ToDo object
+    let oneNewSalesOrder = new SalesOrders(req.body);  // call constuctor in ToDos code that makes a new mongo ToDo object
     console.log(req.body);
-    oneNewGradedAssignment.save((err, assignment) => {
+    oneNewSalesOrder.save((err, salesOrder) => {
       if (err) {
         res.status(500).send(err);
       }
       else {
-      console.log(assignment);
-      res.status(201).json(assignment);
+      console.log(salesOrder);
+      res.status(201).json(salesOrder);
       }
     });
 });
 
 
-router.delete('/DeleteAssignment/:id', function (req, res) {
-  GradedAssignments.deleteOne({ _id: req.params.id }, (err, note) => { 
-    if (err) {
-      res.status(404).send(err);
-    }
-    res.status(200).json({ message: "Graded Assignment was successfully deleted" });
-  });
-});
 
-
-router.put('/UpdateGradedAssignment/:id', function (req, res) {
-  GradedAssignments.findOneAndUpdate(
+router.put('/UpdateSalesOrder/:id', function (req, res) {
+  SalesOrders.findOneAndUpdate(
     { _id: req.params.id },
     { assignment: req.body.assignment, class: req.body.class, grade: req.body.grade,   completed: req.body.completed },
    { new: true },
@@ -94,14 +85,14 @@ router.put('/UpdateGradedAssignment/:id', function (req, res) {
 
 
   /* GET one ToDos */
-router.get('/FindAssignment/:id', function(req, res) {
+router.get('/FindSalesOrderID/:id', function(req, res) {
   console.log(req.params.id );
-  GradedAssignments.find({ _id: req.params.id }, (err, oneAssignment) => {
+  SalesOrders.find({ _id: req.params.id }, (err, oneSalesOrder) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
-    res.status(200).json(oneAssignment);
+    res.status(200).json(oneSalesOrder);
   });
 });
 
