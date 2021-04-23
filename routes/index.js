@@ -5,7 +5,7 @@ var router = express.Router();
 // .ADO.Net is a wrapper over raw SQL server interface
 const mongoose = require("mongoose");
 
-const SalesOrders = require('../SalesOrder');
+const SalesOrders = require('../SalesOrderInt');
 
 // edited to include my non-admin, user level account and PW on mongo atlas
 // and also to include the name of the mongo DB that the collection
