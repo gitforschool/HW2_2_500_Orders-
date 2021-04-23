@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("SalesPersonID").value = GetStoreID(x);
         document.getElementById("CdID").value = validCD[getRandomInt(0,9)];
         document.getElementById("PricePaid").value = getRandomInt(5,15);
-        document.getElementById("Hours").value = DayOfWeek();
-        document.getElementById("Days").value = HourOfDay();
          
         document.getElementById("one").addEventListener("click", function () {
             let x = getRandomInt(1,24)
@@ -26,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             let tSalesPersonID = document.getElementById("SalesPersonID").value = GetStoreID(x);
             let tValid = document.getElementById("CdID").value = validCD[getRandomInt(0,9)];
             let tPricePaid = document.getElementById("PricePaid").value = getRandomInt(5,15);
-            let tHoursPurch =document.getElementById("Hours").value = HourOfDay();
-            let tDaysPurch = document.getElementById("Days").value = DayOfWeek();
+            let tHoursPurch = HourOfDay();
+            let tDaysPurch = DayOfWeek();
             var oneSalesOrder = new SalesOrder(tStoreID, tSalesPersonID, tValid, tPricePaid, tHoursPurch, tDaysPurch); 
             console.log(oneSalesOrder);            
         $.ajax({
