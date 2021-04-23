@@ -23,6 +23,14 @@ const SalesOrderSchema = new Schema({
   pricePaid: {
     type: Number,
     required: true
+  },
+  hourPurch: {
+    type: Number,
+    required: true
+  },
+  dayPurch: {
+    type: String,
+    required: true
   }
 });
 
