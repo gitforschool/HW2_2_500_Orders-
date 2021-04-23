@@ -10,7 +10,7 @@ const SalesOrders = require('../SalesOrder');
 // edited to include my non-admin, user level account and PW on mongo atlas
 // and also to include the name of the mongo DB that the collection
 const dbURI =
- " mongodb+srv://Nicole922:1982_Benji@cluster.17qlh.mongodb.net/SalesOrder?retryWrites=true&w=majority";
+ " mongodb+srv://Nicole922:1982_Benji@cluster.17qlh.mongodb.net/SalesOrders?retryWrites=true&w=majority";
 
 // Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
 // by default, you need to set it to false.
@@ -56,10 +56,6 @@ router.get('/SalesOrder', function(req, res) {
 router.post('/NewSales', function(req, res) {
 
     let oneNewSalesOrder = new SalesOrders(req.body); 
-    
-    // call constuctor in ToDos code that makes a new mongo ToDo object
-
-
     console.log(req.body);
     oneNewSalesOrder.save((err, salesOrder) => {
       if (err) {
@@ -75,30 +71,3 @@ router.post('/NewSales', function(req, res) {
 
 
 
-router.put('/UpdateSalesOrder/:id', function (req, res) {
-  SalesOrders.findOneAndUpdate(
-    { _id: req.params.id },
-    { assignment: req.body.assignment, class: req.body.class, grade: req.body.grade,   completed: req.body.completed },
-   { new: true },
-    (err, assignment) => {
-      if (err) {
-        res.status(500).send(err);
-    }
-    res.status(200).json(assignment);
-    })
-  });
-
-
-  /* GET one ToDos */
-router.get('/FindSalesOrderID/:id', function(req, res) {
-  console.log(req.params.id );
-  SalesOrders.find({ _id: req.params.id }, (err, oneSalesOrder) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    res.status(200).json(oneSalesOrder);
-  });
-});
-
-module.exports = router;

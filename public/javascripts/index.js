@@ -56,86 +56,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function DayOfWeek(){
         var d = new Date();
-        var weekday=new Array(7);
-        weekday[0]="Sunday";
-        weekday[1]="Monday";
-        weekday[2]="Tuesday";
-        weekday[3]="Wednesday";
-        weekday[4]="Thursday";
-        weekday[5]="Friday";
-        weekday[6]="Saturday";
-
-        return weekday[d.getDay()];
+        return d.getDay();
     }
     
     function HourOfDay(){
         var d = new Date();
         return d.getHours();
     };
-    //document.getElementById("get").addEventListener("click", function () {
-    //    updateList()
-    //});
-    
-    // var idToFind = ""; // using the same value from the find operation for the modify
-    // // find one to modify
-    // document.getElementById("find").addEventListener("click", function () {
-    //     var tAssignment = document.getElementById("modSalesOrder").value;
-    //      idToFind = "";
-    //     for(i=0; i< ClientNotes.length; i++){
-    //         if(ClientNotes[i].storeID === tStoreID) {
-    //             idToFind = ClientNotes[i]._id;
-    //        }
-    //     }
-    //     console.log(idToFind);
- 
-    //     $.get("/FindSalesOrder/"+ idToFind, function(data, status){ 
-    //         console.log(data[0].assignment);
-    //         document.getElementById("mStoreID").value = data[0].storeID;
-    //         document.getElementById("mSalePersonID").value= data[0].tSalesPersonID;
-    //         document.getElementById("mGrade").value = data[0].grade;
-    //         document.getElementById("mPricePaid").value = data[0].completed;
-           
-
-    //     });
-    // });
-
-    // get the server data into the local array
-    //updateList();
 
 });
-
-
-// function updateList() {
-// var ul = document.getElementById('listUl');
-// ul.innerHTML = "";  // clears existing list so we don't duplicate old ones
-
-// //var ul = document.createElement('ul')
-
-// $.get("/SalesOrder", function(data, status){  // AJAX get
-//     ClientNotes = data;  // put the returned server json data into our local array
-
-//     // sort array by one property
-//     ClientNotes.sort(compare);  // see compare method below
-//     console.log(data);
-//     //listDiv.appendChild(ul);
-//     ClientNotes.forEach(ProcessOneSalesOrder); // build one li for each item in array
-//     function ProcessOneSalesOrder(item, index) {
-//         var li = document.createElement('li');
-//         ul.appendChild(li);
-
-//         li.innerHTML=li.innerHTML + "StoreID: " + item.storeID + "  " + "SalesPersonID:" + " " + item.salesPersonID + " CdID: " + item.cdID + " PricePaid: "+ item.pricepaid;
-//     }
- //});
-//}
 
 
 function getRandomInt(min, max){
     return Math.floor(Math.random() * (max - min)) + min;
 
 }
-
-
-
 
 
 function compare(a,b) {
