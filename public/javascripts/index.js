@@ -41,6 +41,36 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
     });
+
+    
+    document.getElementById("alot").addEventListener("click", function () {
+        for(i=1; i<=500; i++){
+        let x = getRandomInt(1,24)
+        let tStoreID = document.getElementById("StoreID").value = x;
+        let tSalesPersonID = document.getElementById("SalesPersonID").value = GetStoreID(x);
+        let tValid = document.getElementById("CdID").value = validCD[getRandomInt(0,9)];
+        let tPricePaid = document.getElementById("PricePaid").value = getRandomInt(5,15);
+        let tHoursPurch = HourOfDay();
+        let tDaysPurch = DayOfWeek();
+        var oneSalesOrder = new SalesOrder(tStoreID, tSalesPersonID, tValid, tPricePaid, tHoursPurch, tDaysPurch); 
+        console.log(oneSalesOrder);  
+        
+        
+    $.ajax({
+        url: '/NewSales' ,
+        method: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(oneSalesOrder),
+        success: function (result) {
+            console.log("added SalesOrder")
+        }
+
+    });
+}
+});
+
+
     function GetStoreID(which){
         let storeList = [98053, 98007, 98077, 98055, 98011, 98046 ]
         let pointer = 0;

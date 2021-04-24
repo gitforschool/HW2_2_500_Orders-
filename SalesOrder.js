@@ -29,7 +29,7 @@ const SalesOrderSchema = new Schema({
     required: true
   },
   dayPurch: {
-    type: Int,
+    type: Number,
     required: true
   }
 });
