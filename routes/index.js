@@ -30,36 +30,15 @@ mongoose.connect(dbURI, options).then(
   }
 );
 
-
-
 /* GET home page. */
 router.get('/', function(req, res) {
   res.sendFile('index.html');
 });
-
-/* GET all ToDos */
-router.get('/SalesOrder', function(req, res) {
-  // find {  takes values, but leaving it blank gets all}
-  SalesOrders.find({}, (err, AllSalesOrder) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    res.status(200).json(AllSalesOrder);
-  });
-});
-
-
-
-
-/* post a new ToDo and push to Mongo */
+ 
+/* post a new Order and push to Mongo */
 router.post('/NewSales', function(req, res) {
 
-    let oneNewSalesOrder = new SalesOrders(req.body); 
-    
-    // call constuctor in ToDos code that makes a new mongo ToDo object
-
-
+  let oneNewSalesOrder = new SalesOrders(req.body); 
     console.log(req.body);
     oneNewSalesOrder.save((err, salesOrder) => {
       if (err) {
@@ -73,32 +52,5 @@ router.post('/NewSales', function(req, res) {
     });
 });
 
-
-
-router.put('/UpdateSalesOrder/:id', function (req, res) {
-  SalesOrders.findOneAndUpdate(
-    { _id: req.params.id },
-    { assignment: req.body.assignment, class: req.body.class, grade: req.body.grade,   completed: req.body.completed },
-   { new: true },
-    (err, assignment) => {
-      if (err) {
-        res.status(500).send(err);
-    }
-    res.status(200).json(assignment);
-    })
-  });
-
-
-  /* GET one ToDos */
-router.get('/FindSalesOrderID/:id', function(req, res) {
-  console.log(req.params.id );
-  SalesOrders.find({ _id: req.params.id }, (err, oneSalesOrder) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    res.status(200).json(oneSalesOrder);
-  });
-});
 
 module.exports = router;
