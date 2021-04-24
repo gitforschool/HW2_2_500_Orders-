@@ -29,9 +29,9 @@ const SalesOrderSchema = new Schema({
     required: true
   },
   dayPurch: {
-    type: String,
+    type: Number,
     required: true
   }
 });
 
-module.exports = mongoose.model("SalesOrder", SalesOrderSchema);
+module.exports = mongoose.model("SalesOrderInt", SalesOrderSchema);
